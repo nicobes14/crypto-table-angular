@@ -39,9 +39,14 @@
               </div>
             </td>
             <td class="text-center align-middle">
-              <p class="font-weight-bold">
+              <p *ngIf="crypto.current_price > 50; else elseBlock" class="font-weight-bold">
                 {{ crypto.current_price.toLocaleString() }} $
               </p>
+              <ng-template #elseBlock
+                ><p class="font-weight-bold">
+                  {{ crypto.current_price }} $
+                </p></ng-template
+              >
             </td>
             <td class="text-center align-middle">
               <span
