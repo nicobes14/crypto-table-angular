@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table
+        class="table table-responsive-xl table-bordered table-hover table-dark"
+      >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-center">Name</th>
+            <th
+              scope="col"
+              class="text-center"
+              (click)="ordenarPorPrecio()"
+              style="cursor: pointer"
+            >
+              Price {{ flechaString }}
+            </th>
+            <th scope="col" class="text-center">Price change %</th>
+            <th scope="col" class="text-center">Market Cap</th>
+            <th scope="col" class="text-center">Circulating Supply</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let crypto of cryptoList; let i = index">
+            <th class="align-middle" scope="row">
+              {{ crypto.market_cap_rank }}
+            </th>
+            <td class="d-flex align-middle">
+              <div class="mx-auto d-flex align-middle">
+                <img
+                  src="{{ crypto.image }}"
+                  alt="{{ crypto.id }}"
+                  class="rounded img-fluid"
+                  style="max-width: 25px; max-height: 25px"
+                />
+                <p class="mx-2">{{ crypto.name }}</p>
+                <p class="text-muted">{{ crypto.symbol.toUpperCase() }}</p>
+              </div>
+            </td>
+            <td class="text-center align-middle">
+              <p class="font-weight-bold">
+                {{ crypto.current_price.toLocaleString() }} $
+              </p>
+            </td>
+            <td class="text-center align-middle">
+              <span
+                *ngIf="
+                  crypto.price_change_percentage_24h > 0;
+                  else parrafoNegativo
+                "
+                class="text-success"
+                >{{ crypto.price_change_percentage_24h }} %</span
+              >
+              <ng-template #parrafoNegativo>
+                <p class="text-danger">
+                  {{ crypto.price_change_percentage_24h }} %
+                </p>
+              </ng-template>
+            </td>
+            <td class="text-center align-middle">
+              <p>$ {{ crypto.market_cap.toLocaleString("es-ES") }}</p>
+            </td>
+            <td class="text-center align-middle">
+              <p>
+                $
+                {{
+                  crypto.circulating_supply.toLocaleString("es-ES") +
+                    " " +
+                    crypto.symbol.toUpperCase()
+                }}
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

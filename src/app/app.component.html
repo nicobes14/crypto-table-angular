@@ -1,0 +1,9 @@
+<div class=" p-3 " style="background-color: #212121">
+  <div class="container">
+
+    <input (keyup)="searchCrypto()" type="text" name="nombre" id="nombre" placeholder="Search crypto by name or id"
+      class="form-control bg-dark text-light border-0 my-4 text-center rounded-0 p-2" [(ngModel)]="searchInput">
+
+    <app-cryptotable [cryptoList]="filteredCryptos"></app-cryptotable>
+
+  </div>
